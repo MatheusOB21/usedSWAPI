@@ -1,5 +1,4 @@
-let planets_ul = document.getElementById('planets')
-
+let planets_ul = document.getElementById('planet-buttons');
 
 async function planets() {
 
@@ -12,23 +11,37 @@ async function planets() {
 } 
 
 async function details(p){
-  results = await planets()
+  results = await planets();
   
   results.forEach(planet => {    
     if (planet.name == p) {
-      details_data = planet 
+      details_data = planet; 
     }
   });
   
-  console.log(details_data)
+  head('Nome');
+  head('Clima');
+  head('População');
+  head('Terreno');
 
-  let div = document.getElementById(`${details_data.name}`)
+  let tr = document.getElementById(`${details_data.name}`);
+  
+  let td_name = document.createElement('td'); 
+  td_name.innerHTML = `${details_data.name}`;
+  tr.appendChild(td_name);
+  
+  let td_climate = document.createElement('td'); 
+  td_climate.innerHTML = `${details_data.climate}`
+  tr.appendChild(td_climate);
+  
+  let population = document.createElement('td'); 
+  population.innerHTML = `${details_data.population}`
+  tr.appendChild(population);
+  
+  let terrain = document.createElement('td'); 
+  terrain.innerHTML = `${details_data.terrain}`
+  tr.appendChild(terrain);
 
-  let span = document.createElement('span') 
-
-  span.innerHTML = `${details_data.name} - ${details_data.climate} - ${details_data.population} - ${details_data.terrain}`
-
-  div.appendChild(span)
  }
 
  async function generateButtons(){
@@ -37,13 +50,24 @@ async function details(p){
 
   results.forEach(planet => {
     
-    let li = document.createElement('li')
+    let div = document.createElement('tr')
+    div.setAttribute("id", `${planet.name}`);
 
-    li.innerHTML = `<div id='${planet.name}'><button onclick="details('${planet.name}')">${planet.name}</button></div>`
+    div.innerHTML = `<th><button onclick="details('${planet.name}')">${planet.name}</button></th>`
 
-    planets_ul.appendChild(li)
+    planets_ul.appendChild(div)
   });
   
 
+ }
+
+ function head(id){
+  if(document.getElementById(id) == null){
+    let head = document.getElementById('head');
+    let th = document.createElement('th');
+    th.innerHTML = id;
+    th.setAttribute("id", id);
+    head.appendChild(th);
+  }
  }
 

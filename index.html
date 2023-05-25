@@ -5,15 +5,28 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Star Wars</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <button onclick="generateButtons()">Gere planetas</button>
-  <div id="planet-buttons">
-    <ul id="planets">
+  <div>
+    <div id="button-generate">
+      <button onclick="generateButtons()">Gere planetas</button>
+    </div>
+    
+    <div>
+    </div>
 
-    </ul>
+    <table class="table">
+      <thead>
+        <tr id="head">
+          <th scope="col">Planeta</th>
+        </tr>
+      </thead>
+      <tbody id="planet-buttons">
+      </tbody>
+    </table>
+
   </div>
-
   <script src="script.js"></script>
 </body>
 </html>
