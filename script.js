@@ -10,6 +10,16 @@ async function planets() {
 
 } 
 
+async function resident_api(r) {
+
+  let res = await fetch(r+"?format=json") 
+  
+  let result = await res.json()  
+
+  return result
+
+}
+
 async function details(p){
   results = await planets();
   
@@ -23,6 +33,7 @@ async function details(p){
   head('Clima');
   head('População');
   head('Terreno');
+  head('Residentes');
 
   let tr = document.getElementById(`${details_data.name}`);
   
@@ -42,7 +53,16 @@ async function details(p){
   terrain.innerHTML = `${details_data.terrain}`
   tr.appendChild(terrain);
 
+  details_data.residents.forEach(resident => {
+    let result = resident_api(resident)
+
+    let td = document.createElement('td'); 
+    result.then(res => td.innerHTML = `${res.name}(${res.birth_year})`);
+    tr.appendChild(td);
+  });
+
  }
+
 
  async function generateButtons(){
   results = await planets()
@@ -53,7 +73,7 @@ async function details(p){
     let div = document.createElement('tr')
     div.setAttribute("id", `${planet.name}`);
 
-    div.innerHTML = `<th><button onclick="details('${planet.name}')">${planet.name}</button></th>`
+    div.innerHTML = `<th><button class="btn btn-primary" onclick="details('${planet.name}')">${planet.name}</button></th>`
 
     planets_ul.appendChild(div)
   });

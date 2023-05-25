@@ -6,17 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Star Wars</title>
   <link rel="stylesheet" href="style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 </head>
 <body>
   <div>
-    <div id="button-generate">
-      <button onclick="generateButtons()">Gere planetas</button>
-    </div>
-    
-    <div>
+    <div id="button-generate" class="mt-2 mb-2">
+      <button class="btn btn-primary" onclick="generateButtons()">Gere planetas</button>
+      <input class="ms-2" type="text" name="search" id="search">
     </div>
 
-    <table class="table">
+    <table class="table table-light table-striped-columns">
       <thead>
         <tr id="head">
           <th scope="col">Planeta</th>
